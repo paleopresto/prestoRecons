@@ -45,30 +45,6 @@ recon:
     URL: null
 
 time:
-  resolution: 
-    value: 200
-    default: 200
-    limits: [10, 1000]
-    options: null
-    precision: 10
-    long_name: duration of reconstruction time step
-    description: The base temporal resolution, in years {10}
-    data_type: numeric
-    complexity: standard
-    URL: null
-
-  resolution_max: 
-    value: 200
-    default: 200
-    limits: [10, 1000]
-    options: null
-    precision: 10
-    long_name: minimum resolution of proxies
-    description: The maximum temporal resolution to assimilate proxies at, in years {1000}
-    data_type: numeric
-    complexity: standard
-    URL: null
-   
   range_to_reconstruct:
     value: [0,12000]
     default: [0,12000]
@@ -78,6 +54,18 @@ time:
     long_name: time interval for reconstruction
     description: define a start and end year in units years BP
     data_type: range
+    complexity: standard
+    URL: null
+
+  resolution: 
+    value: 200
+    default: 200
+    limits: [10, 1000]
+    options: null
+    precision: 10
+    long_name: duration of reconstruction time step
+    description: The base temporal resolution, in years {10}
+    data_type: numeric
     complexity: standard
     URL: null
 
@@ -93,19 +81,19 @@ time:
     complexity: standard
     URL: null
 
-  model_interval:
-    value: [0,22000]
-    default: [0,22000]
-    limits: [0,22000]
-    options: null
-    precision: 1
-    long_name: time interval to model
-    description: define a start and end year in units years BP
-    data_type: range
+prior:
+  models:
+    value: ['hadcm3_regrid','trace_regrid']
+    default: ['hadcm3_regrid','trace_regrid']
+    limits: null
+    options: ['hadcm3_regrid','trace_regrid']
+    precision: null
+    long_name: models used for prior
+    description: model details here
+    data_type: list
     complexity: standard
     URL: null
 
-prior:
   time_window: 
     value: 5200
     default: 5200
@@ -115,6 +103,18 @@ prior:
     long_name: prior time window
     description: The size of the window for the time-varying prior, in years {'all',5010,1010}
     data_type: numeric
+    complexity: standard
+    URL: null
+    
+  model_interval:
+    value: [0,22000]
+    default: [0,22000]
+    limits: [0,22000]
+    options: null
+    precision: 1
+    long_name: time interval to use in model prior
+    description: define a start and end year in units years BP
+    data_type: range
     complexity: standard
     URL: null
 
@@ -153,20 +153,56 @@ prior:
     data_type: numeric
     complexity: advanced
     URL: null
-   
-  models:
-    value: ['hadcm3_regrid','trace_regrid']
-    default: ['hadcm3_regrid','trace_regrid']
+
+proxy:
+  datasets:
+    value: [temp12k]
+    default: [temp12k]
     limits: null
-    options: ['hadcm3_regrid','trace_regrid','famous_regrid']
+    options: [temp12k, pages2k]
     precision: null
-    long_name: models used for prior
-    description: model details here 
+    long_name: proxy datasets to assimilate
+    description: proxy data from compilations and project datasets
+    data_type: list
+    complexity: experimental
+    URL: https://lipdverse.org/project/
+
+  archives:
+    value: [Borehole, Coral, FluvialSediment, GlacierIce, GroundIce, LakeSediment, MarineSediment, Midden, MolluskShell, Other, Peat, Sclerosponge, Shoreline, Speleothem, TerrestrialSediment, Wood]
+    default: [Borehole, Coral, FluvialSediment, GlacierIce, GroundIce, LakeSediment, MarineSediment, Midden, MolluskShell, Other, Peat, Sclerosponge, Shoreline, Speleothem, TerrestrialSediment, Wood]
+    limits: null
+    options: [Borehole, Coral, FluvialSediment, GlacierIce, GroundIce, LakeSediment, MarineSediment, Midden, MolluskShell, Other, Peat, Sclerosponge, Shoreline, Speleothem, TerrestrialSediment, Wood]
+    precision: null
+    long_name: archive types to assimilate
+    description: Check of one or more archive types to assimilate.
+    data_type: list
+    complexity: standard
+    URL: https://lipdverse.org/vocabulary/archivetype/
+ 
+  seasonality:
+    value: [annual, summerOnly, winterOnly]
+    default: [annual, summerOnly, winterOnly]
+    limits: null
+    options: [annual, summerOnly, winterOnly, summer+, winter+]
+    precision: null
+    long_name: seasonality of proxies to assimilate
+    description: The reconstruction will still try to represent annual means.
     data_type: list
     complexity: standard
     URL: null
 
-proxy:
+  resolution_max:
+    value: 200
+    default: 200
+    limits: [10, 1000]
+    options: null
+    precision: 10
+    long_name: maximum resolution to use for proxies
+    description: The maximum temporal resolution to assimilate proxies at, in years {1000}
+    data_type: numeric
+    complexity: standard
+    URL: null
+
   assimilate_together: 
     value: true
     default: true
@@ -179,30 +215,6 @@ proxy:
     complexity: advanced
     URL: null
 
-  seasonality: 
-    value: null
-    default: null
-    limits: null
-    options: [annual, summerOnly, winterOnly, summer+, winter+]
-    precision: null
-    long_name: seasonality of proxies to assimilate
-    description: The reconstruction will still try to represent annual means.
-    data_type: list
-    complexity: standard
-    URL: https://lipdverse.org/vocabulary/interpretation_seasonality/
-
-  archives: 
-    value: [Borehole, Coral, FluvialSediment, GlacierIce, GroundIce, LakeSediment, MarineSediment, Midden, MolluskShell, Other, Peat, Sclerosponge, Shoreline, Speleothem, TerrestrialSediment, Wood]
-    default: [Borehole, Coral, FluvialSediment, GlacierIce, GroundIce, LakeSediment, MarineSediment, Midden, MolluskShell, Other, Peat, Sclerosponge, Shoreline, Speleothem, TerrestrialSediment, Wood]
-    limits: null
-    options: [Borehole, Coral, FluvialSediment, GlacierIce, GroundIce, LakeSediment, MarineSediment, Midden, MolluskShell, Other, Peat, Sclerosponge, Shoreline, Speleothem, TerrestrialSediment, Wood]
-    precision: null
-    long_name: archive types to assimilate
-    description: Check of one or more archive types to assimilate.
-    data_type: list
-    complexity: standard
-    URL: https://lipdverse.org/vocabulary/archivetype/
-   
   resoltion:
     value: [0, 1000]
     default: [0, 1000]
@@ -239,18 +251,6 @@ proxy:
     complexity: advanced
     URL: null
    
-  datasets:
-    value: [temp12k]
-    default: [temp12k]
-    limits: null
-    options: [temp12k, pages2k, pseudo_temp12k_using_trace_noise_whiteproxyrmse]
-    precision: null
-    long_name: proxy datasets to assimilate
-    description: proxy data from compilations and project datasets
-    data_type: list
-    complexity: standard
-    URL: https://lipdverse.org/project/
-
   season_assign:
     value: null
     default: null
@@ -264,6 +264,18 @@ proxy:
     URL: null
 
 geo:
+  proxy_coords:
+    value: [-90, 90, -180, 180]
+    default: [-90, 90, -180, 180]
+    limits: [-90, 90, -180, 180]
+    options: [single,180]
+    precision: 0.001
+    long_name: coordinate bounds for assimilating proxies
+    description: Provide bounds to assimilate only proxies in a given region
+    data_type: lat-lon
+    complexity: standard
+    URL: null
+
   localization_radius: 
     value: null
     default: null
@@ -274,18 +286,6 @@ geo:
     description: Localization radius, in meters {None,15000}  Only works if assimate_together=False
     data_type: free-form
     complexity: advanced
-    URL: null
-  
-  proxy_coords:
-    value: [-90, 90, -180, 180]
-    default: [-90, 90, -180, 180]
-    limits: [-90, 90, -180, 180]
-    options: null
-    precision: 0.001
-    long_name: coordinate bounds for assimilating proxies
-    description: Provide bounds to assimilate only proxies in a given region
-    data_type: lat-lon
-    complexity: standard
     URL: null
 
 model:

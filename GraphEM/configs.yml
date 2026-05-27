@@ -1,0 +1,142 @@
+#==============================================
+# SETTINGS for running the Graph-EM code
+# See the README.md file for more explaination.
+# https://github.com/DaveEdge1/graphem
+#==============================================
+
+
+time:
+  range_to_reconstruct: 
+    value: [1871,2000]
+    default: [1871,2000]
+    limits: [0, 2000]
+    options: null
+    precision: 1
+    long_name: time interval for reconstruction
+    description: define a start and end year in units year CE
+    data_type: range
+    complexity: standard
+    URL: null
+  recon_timescale: 
+    value: 1
+    default: 1
+    limits: [1, 100]
+    options: null
+    precision: 1
+    long_name: reconstruction temporal resolution
+    description: Time step of reconstruction (yrs)
+    data_type: numeric
+    complexity: experimental
+    URL: null
+proxy:
+  annualize_months: 
+    value: [12,1,2]
+    default: [12,1,2]
+    limits: null
+    options: null
+    precision: null
+    long_name: proxy months to annualize
+    description: a list of cosecutive months to set annual proxy mean (eg. [6,7,8] for June, July, August.) Leave blank to use full calndar year.
+    data_type: free-form
+    complexity: standard
+    URL: null
+  center_ref_period: 
+    value: [1901,2000]
+    default: [1901,2000]
+    limits: [0,2000]
+    options: null
+    precision: 1
+    long_name: proxy reference period
+    description: centering the proxy timeseries regarding a reference period
+    data_type: range
+    complexity: advanced
+    URL: null
+  path: 
+    value: PAGES2kv2
+    default: PAGES2kv2
+    limits: null
+    options: [PAGES2kv1,PAGES2kv2,PAGES2kvLATEST]
+    precision: null
+    long_name: proxy database
+    description: the source of climate proxy data
+    data_type: character
+    complexity: standard
+    URL: null
+  archiveType: 
+    value: [coral]
+    default: [coral]
+    limits: null
+    options: [bivalve,borehole,coral, documents, glacier ice, hybrid, lake sediment, marine sediment, sclerosponge, speleothem, tree]
+    precision: null
+    long_name: proxy archive
+    description: the physical medium in which the response of a proxy sensor to environmental forcing is recorded and upon which the proxy measurements were made
+    data_type: list
+    complexity: standard
+    URL: null
+calibration:
+  anom_period: 
+    value: [1951,1980]
+    default: [1951,1980]
+    limits: [1854,2020]
+    options: null
+    precision: 1
+    long_name: climate normal period
+    description: the interval to set the baseline for anomaly calculation
+    data_type: range
+    complexity: standard
+    URL: null
+  coord_bounds: 
+    value: [-20,20,150,260]
+    default: [-20,20,150,260]
+    limits: [-90,90,-360,360]
+    options: [single,360]
+    precision: .001
+    long_name: coordinate bounds for instrumental data
+    description: provide bounds to include only climate data in a given region
+    data_type: lat-lon
+    complexity: standard
+    URL: null
+  annualize_months: 
+    value: [12,1,2]
+    default: [12,1,2]
+    limits: null
+    options: null
+    precision: null
+    long_name: instrumental data months to annualize
+    description: a list of cosecutive months to set annual instrumental data mean (eg. [6,7,8] for June, July, August.) Leave blank to use full calndar year.
+    data_type: free-form
+    complexity: standard
+    URL: null
+  interval: 
+    value: [1901,2000]
+    default: [1901,2000]
+    limits: [1854,2020]
+    options: null
+    precision: null
+    long_name: interval for instrumental calibration
+    description: period of time over which instrumental data is used to benchmark the proxies
+    data_type: range
+    complexity: standard
+    URL: null
+  regrid_lat: 
+    value: [42]
+    default: [42]
+    limits: [1,1000]
+    options: null
+    precision: null
+    long_name: number of latitude grid cells upon regridding
+    description: interpolate from one grid resolution to a different grid resolution
+    data_type: numeric
+    complexity: standard
+    URL: null
+  regrid_lon: 
+    value: [63]
+    default: [63]
+    limits: [1,1000]
+    options: null
+    precision: null
+    long_name: number of longitude grid cells upon regridding
+    description: interpolate from one grid resolution to a different grid resolution
+    data_type: numeric
+    complexity: standard
+    URL: null

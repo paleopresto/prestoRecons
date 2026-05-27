@@ -7,8 +7,8 @@
 
 time:
   range_to_reconstruct: 
-    value: [7000,10000]
-    default: [7000, 10000]
+    value: [7000,12000]
+    default: [7000, 12000]
     limits: [0, 12000]
     options: null
     precision: 1
@@ -32,10 +32,10 @@ time:
 
 proxy:
   interpVariable: 
-    value: Temperature
-    default: Temperature
+    value: T
+    default: T
     limits: null
-    options: [Temperature, Precipitation]
+    options: [T, P]
     precision: null
     long_name: interpretation variable
     description: Climate interpretation of proxies
@@ -57,10 +57,10 @@ proxy:
 
 geo:
   proxy_coords:
-    value: [-90, 90, -180, 180]
-    default: [-90, 90, -180, 180]
+    value: [35, 55, -90, -50]
+    default: [35, 55, -90, -50]
     limits: [-90, 90, -180, 180]
-    options: null
+    options: [single,180]
     precision: 0.001
     long_name: coordinate bounds for incorporating proxies
     description: Provide bounds to include only proxies in a given region
