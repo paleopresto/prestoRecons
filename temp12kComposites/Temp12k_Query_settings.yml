@@ -12,7 +12,7 @@
 #   tooltip: free text field (Replace the help text in the tooltip popup; "~" is equivalent to NULL, leave unchanged)
 #==============================================
 
-Compilation Filters:
+Compilation Filter:
   Explanation: ~
 
   Compilation: 
